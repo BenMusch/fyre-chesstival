@@ -1,12 +1,10 @@
 class Setting < ApplicationRecord
 
   def round_number
-    if where(key: "round_number").exists?
-      where(key: "round_number").value
-    else
-      create!(key: "round_number", value: 1)
-      1
+    if !where(key: "round_number").exists?
+      create!(key: "round_number", value: 0)
     end
+    where(key: "round_number").value
   end
 
   def increment_round_number!
