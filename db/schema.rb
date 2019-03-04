@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_04_000836) do
+ActiveRecord::Schema.define(version: 2019_03_04_000904) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,17 @@ ActiveRecord::Schema.define(version: 2019_03_04_000836) do
     t.index ["priority", "run_at"], name: "delayed_jobs_priority"
   end
 
+  create_table "matches", force: :cascade do |t|
+    t.bigint "white_id"
+    t.bigint "black_id"
+    t.integer "result", default: 0
+    t.integer "round_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["black_id"], name: "index_matches_on_black_id"
+    t.index ["white_id"], name: "index_matches_on_white_id"
+  end
+
   create_table "players", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -42,4 +53,6 @@ ActiveRecord::Schema.define(version: 2019_03_04_000836) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "matches", "players", column: "black_id"
+  add_foreign_key "matches", "players", column: "white_id"
 end

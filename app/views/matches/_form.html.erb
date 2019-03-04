@@ -6,7 +6,7 @@
   <div class="form-inputs">
     <%= f.association :white %>
     <%= f.association :black %>
-    <%= f.input :result %>
+    <%= f.input :result, collection: Match.results %>
     <%= f.input :round_number %>
   </div>
 
