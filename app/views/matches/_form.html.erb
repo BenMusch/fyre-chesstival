@@ -1,0 +1,16 @@
+
+<%= simple_form_for(@match) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.association :white %>
+    <%= f.association :black %>
+    <%= f.input :result %>
+    <%= f.input :round_number %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
