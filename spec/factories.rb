@@ -1,4 +1,9 @@
 FactoryBot.define do
+  factory :setting do
+    name { "MyString" }
+    value { 1 }
+  end
+
   factory :match do
     white { nil }
     black { nil }
